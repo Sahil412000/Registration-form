@@ -1,0 +1,44 @@
+1. BcryptJS:
+
+require package:
+npm i bcrypt
+
+add it in app.js:
+const bcrypt = require("bcryptjs");
+
+function to get hash value:
+
+const securePassword = async (password)=>{
+
+const passwordHash = await bcrypt.hash(password, 10); //hash is a function
+console.log(passwordMatch); // 10 is number of rounds 
+
+const passwordHash = await bcrypt.compare(password, passwordHash); //compare is a function
+console.log(passwordMatch);
+}
+
+securePassword("sahil"); //call
+
+output: some random hash password //eykgugyyku.HgfGFYHH.JGFEG
+true //if matched
+
+2. JSONWEBTOKEN
+
+require package:
+npm i jsonwebtoken 
+
+add it to app.js
+const jwt = require("jsonwebtoken");
+
+function to create unique token:
+
+const createtoken = async()=>{
+    const token = await jwt.sign({_id:"database_id"}, "secret_key",   //secret_key should be min 32 words
+    {expiresIn:"time_duraction"}); // after expire user has to sign in again
+    console.log(token);
+
+    //to verify the user
+    const userverify = await jwt.verify(token, secret_key);
+}
+
+createtoken();
